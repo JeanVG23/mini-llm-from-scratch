@@ -6,9 +6,24 @@ Un petit modèle de langage de type GPT, construit étape par étape, du bigramm
 
 ## Méthode de travail
 
-Je n'ai pas écrit le code de ce dépôt : il est écrit par un assistant IA sous ma direction. Ma part : la conception (ordre des étapes, frontière du « from scratch », choix de ce que l'on mesure), le protocole d'évaluation, la relecture critique des résultats, et la compréhension détaillée de chaque mécanisme à travers des échanges continus et approfondis à chaque étape. Les mesures sont à lire avec les limites indiquées dans chaque rapport.
+Je n'ai pas écrit le code de ce dépôt : il est écrit par un assistant IA sous ma direction. Ma part : la conception (ordre des étapes, frontière du « from scratch », choix de ce que l'on mesure), le protocole d'évaluation, la relecture critique des résultats, et la compréhension approfondie de chaque mécanisme.
 
-Chaque étape suit le même cycle : une question et une prédiction chiffrée écrites avant toute mesure, des tests de correction écrits avant le code, des mesures sur un jeu de développement (`dev`) avec un jeu `test` lu une seule fois, puis un rapport dans [`experiments/`](experiments/) qui garde les échecs.
+### Le dialogue en parallèle : un apprentissage actif
+
+Chaque étape s'accompagne d'un échange continu et approfondi avec l'assistant (qui adopte la posture d'un professeur exigeant, pas d'un simple exécutant) :
+* **Décortiquer les fondements** : comprendre le sens mathématique et l'intuition derrière chaque formule (pourquoi une loss, pourquoi telle forme de tenseur, comment fonctionne l'entropie croisée).
+* **Replacer dans l'histoire** : situer chaque progrès dans la chronologie de l'IA (des chaînes de Markov de 1913 aux Transformers de 2017) pour comprendre quelle impasse historique chaque brique vient débloquer.
+* **Challenger les compromis** : analyser les limites concrètes de chaque choix technique (malédiction de la dimensionnalité, lissage de Laplace, absence de fuite entre jeux de données).
+* **Porte de compréhension** : aucun composant n'est validé sans que ses rouages ne soient maîtrisés ; chaque étape se conclut par trois questions de synthèse auxquelles je dois savoir répondre sans consulter le dépôt.
+
+### Le cycle d'une étape
+
+Chaque étape suit un protocole expérimental strict en cinq temps :
+1. **Question et prédiction chiffrée** : formulées et écrites avant toute mesure (une prédiction fausse est un résultat utile).
+2. **Tests de correction d'abord** : écrits avant le code, exécutés sur CPU et données synthétiques sans accès réseau (gradient numérique contre analytique, contrôle de causalité, formes).
+3. **Mesures étanches** : exécutées sur le jeu de développement (`dev`) sur 3 graines (moyenne et écart-type) ; le jeu `test` reste scellé via une fonction dédiée jusqu'à l'étape 9.
+4. **Rapport d'expérience** : consigné dans [`experiments/`](experiments/), incluant les échecs, les anomalies observées et les limites de validité.
+5. **Validation des acquis** : passage de la porte de compréhension avant de passer à l'étape suivante.
 
 ## Parcours
 
@@ -42,7 +57,7 @@ Le corpus (Tiny Shakespeare, environ 1,1 million de caractères) est vérifié p
 
 ## English summary
 
-A small GPT-style language model built step by step, from a count-based bigram to a GPT, with a measured write-up (in French) for every step, failures included. Steps 1 to 4 use numpy with hand-written backpropagation; from step 5 on, PyTorch provides tensors and autograd only, while layers, optimizer, tokenizer and training loop stay hand-written. The final step loads GPT-2 small weights into our own architecture and checks that the logits match the reference. The code is written by an AI assistant under the direction of the repository owner, who designed the curriculum and the evaluation protocol, inspects every mechanism in detail and reviews every result.
+A small GPT-style language model built step by step, from a count-based bigram to a GPT, with a measured write-up (in French) for every step, failures included. Steps 1 to 4 use numpy with hand-written backpropagation; from step 5 on, PyTorch provides tensors and autograd only, while layers, optimizer, tokenizer and training loop stay hand-written. The final step loads GPT-2 small weights into our own architecture and checks that the logits match the reference. The code is written by an AI assistant under the direction of the repository owner, who designed the curriculum and the evaluation protocol, engages in continuous interactive dialogue to inspect every mechanism and mathematical foundation in detail, and reviews every result.
 
 ## Limites
 
