@@ -1,0 +1,30 @@
+[project]
+name = "mini-llm"
+version = "0.1.0"
+description = "Un petit LLM construit pas à pas : du bigramme à GPT, avec un rapport chiffré par étape"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.0"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.16,<0.17",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+# E/F : erreurs de base ; I : tri des imports ; UP : syntaxe moderne ;
+# B : bugs probables ; SIM : simplifications ; RUF : règles propres à Ruff.
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+# E501 : les longues lignes sont des docstrings et des commentaires en français.
+ignore = ["E501"]

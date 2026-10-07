@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Corpus, poids et checkpoints : téléchargés ou produits localement, jamais versionnés
+data/
+
+# Documentation de conception et gabarits temporaires
+docs/
+experiments/_gabarit.md
+
+CLAUDE.md
+GEMINI.md
