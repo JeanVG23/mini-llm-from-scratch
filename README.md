@@ -31,7 +31,7 @@ Spec de référence : [`docs/superpowers/specs/2026-10-06-mini-llm-design.md`](d
 
 | N° | Étape | Pile | Statut |
 |---|---|---|---|
-| 1 | Bigramme par comptage (plancher de référence) | numpy | à faire |
+| 1 | Bigramme par comptage (plancher de référence) | numpy | fait ([rapport](experiments/s01-bigram-counts.md)) |
 | 2 | Bigramme neuronal, gradient écrit à la main | numpy | à faire |
 | 3 | MLP à contexte fixe, rétropropagation à la main | numpy | à faire |
 | 4 | Une tête d'attention causale, forward et backward à la main | numpy | à faire |
